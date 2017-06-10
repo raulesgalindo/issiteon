@@ -24,6 +24,7 @@ import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.ScaleAnimation;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.galindo.raules.issiteon.R;
@@ -80,7 +81,6 @@ public class Main extends AppCompatActivity {
             public void onTabReselected(TabLayout.Tab tab) {
 
             }
-            int[] colorIntArray = {R.color.black_overlay,R.color.colorPrimaryDark};
             int[] iconIntArray = {R.drawable.ic_add,R.drawable.ic_delete_forever};
 
             public void animateFab(final int position) {
@@ -190,6 +190,36 @@ public class Main extends AppCompatActivity {
         }
     }
 
+    public static class PlaceholderFragmentLog extends Fragment {
+        /**
+         * The fragment argument representing the section number for this
+         * fragment.
+         */
+        private static final String ARG_SECTION_NUMBER = "section_number";
+
+        public PlaceholderFragmentLog() {
+        }
+
+        /**
+         * Returns a new instance of this fragment for the given section
+         * number.
+         */
+        public static PlaceholderFragmentLog newInstance(int sectionNumber) {
+            PlaceholderFragmentLog fragment = new PlaceholderFragmentLog();
+            Bundle args = new Bundle();
+            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
+            fragment.setArguments(args);
+            return fragment;
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                 Bundle savedInstanceState) {
+            View rootView = inflater.inflate(R.layout.fragment_log, container, false);
+            return rootView;
+        }
+    }
+
     /**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
      * one of the sections/tabs/pages.
@@ -204,7 +234,14 @@ public class Main extends AppCompatActivity {
         public Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
-            return PlaceholderFragment.newInstance(position + 1);
+            switch (position) {
+                case 0:
+                    return PlaceholderFragment.newInstance(position + 1);
+                case 1:
+                    return PlaceholderFragmentLog.newInstance(position);
+                default:
+                    return PlaceholderFragment.newInstance(position + 1);
+            }
         }
 
         @Override
