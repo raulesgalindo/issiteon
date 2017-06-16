@@ -1,3 +1,4 @@
 Network state Android: https://stackoverflow.com/questions/9570237/android-check-internet-connection	
 Search Interface: https://developer.android.com/guide/topics/search/search-dialog.html		https://stackoverflow.com/questions/27556623/creating-a-searchview-that-looks-like-the-material-design-guidelines
+sqlite and android: http://www.hermosaprogramacion.com/2014/10/android-sqlite-bases-de-datos/
 

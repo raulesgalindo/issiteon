@@ -27,6 +27,7 @@ import android.view.animation.ScaleAnimation;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import com.galindo.raules.issiteon.Controller.DBController;
 import com.galindo.raules.issiteon.R;
 
 public class Main extends AppCompatActivity {
@@ -125,6 +126,10 @@ public class Main extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        //Start SQLite
+        DBController dbController = new DBController(this);
+
 
     }
 
