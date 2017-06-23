@@ -8,21 +8,8 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.galindo.raules.issiteon.View.Main$PlaceholderFragment">
 
-    <TextView
-        android:id="@+id/section_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <ToggleButton
-        android:id="@+id/toggleButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/section_label"
-        android:layout_marginLeft="81dp"
-        android:layout_marginStart="81dp"
-        android:layout_marginTop="74dp"
-        android:layout_toEndOf="@+id/section_label"
-        android:layout_toRightOf="@+id/section_label"
-        android:text="ToggleButton" />
-
+    <ListView
+        android:id="@+id/lv_site"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </RelativeLayout>

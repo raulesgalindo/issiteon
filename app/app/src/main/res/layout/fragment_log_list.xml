@@ -9,5 +9,5 @@
     android:layout_marginLeft="16dp"
     android:layout_marginRight="16dp"
     app:layoutManager="LinearLayoutManager"
-    tools:context="com.galindo.raules.issiteon.View.logFragment"
+    tools:context="com.galindo.raules.issiteon.View.LogFragment"
     tools:listitem="@layout/fragment_log" />

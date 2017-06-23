@@ -24,10 +24,12 @@ import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.ScaleAnimation;
+import android.widget.ListView;
 import android.widget.Switch;
 import android.widget.TextView;
 
 import com.galindo.raules.issiteon.Controller.DBController;
+import com.galindo.raules.issiteon.Controller.SiteController;
 import com.galindo.raules.issiteon.R;
 
 public class Main extends AppCompatActivity {
@@ -47,12 +49,19 @@ public class Main extends AppCompatActivity {
      */
     private ViewPager mViewPager;
     private FloatingActionButton fab;
+    private int position;
+    private SiteController siteController;
+
+    //Fragments
+    private SiteFragment siteFragment;
+    private LogFragment logFragment;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         // Create the adapter that will return a fragment for each of the three
@@ -65,7 +74,7 @@ public class Main extends AppCompatActivity {
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
-
+        setSiteController(new SiteController(Main.this));
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -122,8 +131,21 @@ public class Main extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                if(getPosition() == 1){
+                    //Creamos el adapter
+                    setSiteController(new SiteController(Main.this));
+                    SiteFragment siteFragment = getSiteFragment();
+                    ListView lv_site = siteFragment.getLv_site();
+                    lv_site.setAdapter(getSiteController().getSiteAdapter());
+                    siteFragment.setLv_site(lv_site);
+                    setSiteFragment(siteFragment);
+                    Snackbar.make(view, "Item added", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                }else if(getPosition() == 0){
+                    Snackbar.make(view, "Item deleted", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                }
+
             }
         });
 
@@ -132,7 +154,6 @@ public class Main extends AppCompatActivity {
 
 
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -160,70 +181,8 @@ public class Main extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    /**
-     * A placeholder fragment containing a simple view.
-     */
-    public static class PlaceholderFragment extends Fragment {
-        /**
-         * The fragment argument representing the section number for this
-         * fragment.
-         */
-        private static final String ARG_SECTION_NUMBER = "section_number";
 
-        public PlaceholderFragment() {
-        }
 
-        /**
-         * Returns a new instance of this fragment for the given section
-         * number.
-         */
-        public static PlaceholderFragment newInstance(int sectionNumber) {
-            PlaceholderFragment fragment = new PlaceholderFragment();
-            Bundle args = new Bundle();
-            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-            fragment.setArguments(args);
-            return fragment;
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-            //textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
-            return rootView;
-        }
-    }
-
-    public static class PlaceholderFragmentLog extends Fragment {
-        /**
-         * The fragment argument representing the section number for this
-         * fragment.
-         */
-        private static final String ARG_SECTION_NUMBER = "section_number";
-
-        public PlaceholderFragmentLog() {
-        }
-
-        /**
-         * Returns a new instance of this fragment for the given section
-         * number.
-         */
-        public static PlaceholderFragmentLog newInstance(int sectionNumber) {
-            PlaceholderFragmentLog fragment = new PlaceholderFragmentLog();
-            Bundle args = new Bundle();
-            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-            fragment.setArguments(args);
-            return fragment;
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_log, container, false);
-            return rootView;
-        }
-    }
 
     /**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
@@ -239,13 +198,17 @@ public class Main extends AppCompatActivity {
         public Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
+            setPosition(position);
             switch (position) {
                 case 0:
-                    return PlaceholderFragment.newInstance(position + 1);
+                    setSiteFragment(new SiteFragment());
+                    return getSiteFragment().newInstance("hola","hola");
                 case 1:
-                    return PlaceholderFragmentLog.newInstance(position);
+                    setLogFragment(new LogFragment());
+                    return getLogFragment().newInstance(position);
                 default:
-                    return PlaceholderFragment.newInstance(position + 1);
+                    setSiteFragment(new SiteFragment());
+                    return getSiteFragment().newInstance("hola","hola");
             }
         }
 
@@ -266,5 +229,37 @@ public class Main extends AppCompatActivity {
             return null;
         }
 
+    }
+
+    private int getPosition() {
+        return position;
+    }
+
+    private void setPosition(int position) {
+        this.position = position;
+    }
+
+    private SiteController getSiteController() {
+        return siteController;
+    }
+
+    private void setSiteController(SiteController siteController) {
+        this.siteController = siteController;
+    }
+
+    public SiteFragment getSiteFragment() {
+        return siteFragment;
+    }
+
+    public void setSiteFragment(SiteFragment siteFragment) {
+        this.siteFragment = siteFragment;
+    }
+
+    public LogFragment getLogFragment() {
+        return logFragment;
+    }
+
+    public void setLogFragment(LogFragment logFragment) {
+        this.logFragment = logFragment;
     }
 }

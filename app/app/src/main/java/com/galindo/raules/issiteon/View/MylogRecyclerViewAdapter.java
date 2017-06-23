@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.galindo.raules.issiteon.View.logFragment.OnListFragmentInteractionListener;
+import com.galindo.raules.issiteon.View.LogFragment.OnListFragmentInteractionListener;
 import com.galindo.raules.issiteon.View.dummy.DummyContent.DummyItem;
 
 import com.galindo.raules.issiteon.R;
@@ -38,8 +38,8 @@ public class MylogRecyclerViewAdapter extends RecyclerView.Adapter<MylogRecycler
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
-        holder.mIdView.setText(mValues.get(position).id);
-        holder.mContentView.setText(mValues.get(position).content);
+        //holder.mIdView.setText(mValues.get(position).id);
+        //holder.mContentView.setText(mValues.get(position).content);
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,20 +60,20 @@ public class MylogRecyclerViewAdapter extends RecyclerView.Adapter<MylogRecycler
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
-        public final TextView mIdView;
-        public final TextView mContentView;
+        //public final TextView mIdView;
+        //public final TextView mContentView;
         public DummyItem mItem;
 
         public ViewHolder(View view) {
             super(view);
             mView = view;
-            mIdView = (TextView) view.findViewById(R.id.id);
-            mContentView = (TextView) view.findViewById(R.id.content);
+           // mIdView = (TextView) view.findViewById(R.id.id);
+            //mContentView = (TextView) view.findViewById(R.id.content);
         }
 
         @Override
         public String toString() {
-            return super.toString() + " '" + mContentView.getText() + "'";
+            return super.toString() + " '" +/* mContentView.getText() + */"'";
         }
     }
 }

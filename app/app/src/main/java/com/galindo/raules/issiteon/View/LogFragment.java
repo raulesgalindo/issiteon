@@ -14,15 +14,13 @@ import com.galindo.raules.issiteon.R;
 import com.galindo.raules.issiteon.View.dummy.DummyContent;
 import com.galindo.raules.issiteon.View.dummy.DummyContent.DummyItem;
 
-import java.util.List;
-
 /**
  * A fragment representing a list of Items.
  * <p/>
  * Activities containing this fragment MUST implement the {@link OnListFragmentInteractionListener}
  * interface.
  */
-public class logFragment extends Fragment {
+public class LogFragment extends Fragment {
 
     // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
@@ -34,13 +32,13 @@ public class logFragment extends Fragment {
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
-    public logFragment() {
+    public LogFragment() {
     }
 
     // TODO: Customize parameter initialization
     @SuppressWarnings("unused")
-    public static logFragment newInstance(int columnCount) {
-        logFragment fragment = new logFragment();
+    public  LogFragment newInstance(int columnCount) {
+        LogFragment fragment = new LogFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_COLUMN_COUNT, columnCount);
         fragment.setArguments(args);
