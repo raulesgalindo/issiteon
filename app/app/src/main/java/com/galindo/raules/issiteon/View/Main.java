@@ -1,6 +1,7 @@
 package com.galindo.raules.issiteon.View;
 
 import android.app.SearchManager;
+import android.net.Uri;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -31,8 +32,9 @@ import android.widget.TextView;
 import com.galindo.raules.issiteon.Controller.DBController;
 import com.galindo.raules.issiteon.Controller.SiteController;
 import com.galindo.raules.issiteon.R;
+import com.galindo.raules.issiteon.View.dummy.DummyContent;
 
-public class Main extends AppCompatActivity {
+public class Main extends AppCompatActivity implements SiteFragment.OnFragmentInteractionListener, LogFragment.OnListFragmentInteractionListener {
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -181,7 +183,15 @@ public class Main extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onFragmentInteraction(Uri uri) {
 
+    }
+
+    @Override
+    public void onListFragmentInteraction(DummyContent.DummyItem item) {
+
+    }
 
 
     /**
@@ -202,7 +212,8 @@ public class Main extends AppCompatActivity {
             switch (position) {
                 case 0:
                     setSiteFragment(new SiteFragment());
-                    return getSiteFragment().newInstance("hola","hola");
+                    setSiteFragment(getSiteFragment().newInstance("hola","hola"));
+                    return getSiteFragment();
                 case 1:
                     setLogFragment(new LogFragment());
                     return getLogFragment().newInstance(position);

@@ -5,25 +5,25 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/imageView_row_site"
+        android:id="@+id/iv_row_site"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@mipmap/ic_launcher_round" />
 
     <ImageButton
-        android:id="@+id/imageButton_row_site"
+        android:id="@+id/ib_row_site"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/ic_edit" />
 
     <ToggleButton
-        android:id="@+id/toggleButton_row_site"
+        android:id="@+id/tb_row_site"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="ToggleButton" />
 
     <TextView
-        android:id="@+id/textView_row_site"
+        android:id="@+id/tv_row_site"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
