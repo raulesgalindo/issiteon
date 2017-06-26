@@ -23,24 +23,35 @@ import java.util.ArrayList;
 
 
 public class SiteAdapter extends ArrayAdapter {
-    ArrayList<SiteModel> modelItems = null;
+    private ArrayList<SiteModel> modelItems = null;
     private ImageView iv_row_site;
     private ImageButton ib_row_site;
     private ToggleButton tb_row_site;
     private TextView tv_row_site;
     Context context;
-    public SiteAdapter(Context context,  ArrayList<SiteModel> resource) {
-        super(context, R.layout.row_site,resource);
+    public SiteAdapter(Context context,  int resource, ArrayList<SiteModel> modelItems) {
+        super(context, resource, modelItems);
         this.context = context;
-        this.modelItems = resource;
+        this.modelItems = modelItems;
 
     }
     @Override
-    public View getView( View convertView, ViewGroup parent) {
+    public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = ((Activity)context).getLayoutInflater();
         convertView = inflater.inflate(R.layout.row_site, parent, false);
         setIv_row_site((ImageView) convertView.findViewById(R.id.iv_row_site));
+        setIb_row_site((ImageButton)convertView.findViewById(R.id.ib_row_site));
+        setTb_row_site((ToggleButton) convertView.findViewById(R.id.tb_row_site));
+        setTv_row_site((TextView) convertView.findViewById(R.id.tv_row_site));
         return convertView;
+    }
+
+    public ArrayList<SiteModel> getModelItems() {
+        return modelItems;
+    }
+
+    public void setModelItems(ArrayList<SiteModel> modelItems) {
+        this.modelItems = modelItems;
     }
 
     public ImageView getIv_row_site() {

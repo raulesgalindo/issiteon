@@ -3,6 +3,7 @@ package com.galindo.raules.issiteon.Controller;
 import android.content.Context;
 
 import com.galindo.raules.issiteon.Model.SiteModel;
+import com.galindo.raules.issiteon.R;
 
 import java.util.ArrayList;
 
@@ -16,13 +17,18 @@ public class SiteController {
     int counter = 0;
     public SiteController(Context context){
         setContext(context);
-        setSiteAdapter(new SiteAdapter(getContext(),getModelItems()));
+        setSiteAdapter(new SiteAdapter(getContext(), R.layout.row_site, getModelItems()));
     }
     public void updateSiteAdapter(){
-        setSiteAdapter(new SiteAdapter(getContext(),getModelItems()));
+        setSiteAdapter(new SiteAdapter(getContext(), R.layout.row_site , getModelItems()));
     }
     private ArrayList<SiteModel> getModelItems(){
-        ArrayList<SiteModel> modelItems = new ArrayList<SiteModel>();
+        ArrayList<SiteModel> modelItems = null;
+        if(siteAdapter == null){
+            modelItems = new ArrayList<SiteModel>();
+        }else{
+            siteAdapter.getModelItems();
+        }
         for(int index =0; index <= counter; index++){
             modelItems.add(new SiteModel());
         }

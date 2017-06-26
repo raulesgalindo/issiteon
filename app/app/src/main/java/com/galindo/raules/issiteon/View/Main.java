@@ -25,11 +25,13 @@ import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.ScaleAnimation;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Switch;
 import android.widget.TextView;
 
 import com.galindo.raules.issiteon.Controller.DBController;
+import com.galindo.raules.issiteon.Controller.SiteAdapter;
 import com.galindo.raules.issiteon.Controller.SiteController;
 import com.galindo.raules.issiteon.R;
 import com.galindo.raules.issiteon.View.dummy.DummyContent;
@@ -138,6 +140,8 @@ public class Main extends AppCompatActivity implements SiteFragment.OnFragmentIn
                     setSiteController(new SiteController(Main.this));
                     SiteFragment siteFragment = getSiteFragment();
                     ListView lv_site = siteFragment.getLv_site();
+                    // get data from the table by the ListAdapter
+                    //SiteAdapter customAdapter = new SiteAdapter(this, R.layout.row_site,null);
                     lv_site.setAdapter(getSiteController().getSiteAdapter());
                     siteFragment.setLv_site(lv_site);
                     setSiteFragment(siteFragment);
